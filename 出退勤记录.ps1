@@ -62,6 +62,7 @@ $checkOutButton.Add_Click({
     $filePathOut = "$dateString-退勤.txt"
 
     if (Test-Path $filePathIn) {
+        # 从文件中获取内容并转换为日期对象
         $checkInTime = Get-Content -Path $filePathIn | Out-String | Get-Date
         $checkOutTime = Get-Date
         $workDuration = $checkOutTime - $checkInTime
@@ -78,17 +79,29 @@ $totalDurationButton.Add_Click({
     $totalDuration = [TimeSpan]::Zero
     $files = Get-ChildItem -Filter "*-退勤.txt"
     
-    foreach ($file in $files) {
-        $content = Get-Content -Path $file.FullName
-        foreach ($line in $content) {
-            if ($line -match "工作时长: (\d+)小时(\d+)分钟(\d+)秒") {
-                $hours = [int]$matches[1]
-                $minutes = [int]$matches[2]
-                $seconds = [int]$matches[3]
-                $totalDuration += New-TimeSpan -Hours $hours -Minutes $minutes -Seconds $seconds
-            }
+# 初始化总工作时长变量
+$totalDuration = [System.TimeSpan]::Zero
+
+# 遍历文件列表中的每个文件
+foreach ($file in $files) {
+    # 获取文件内容
+    $content = Get-Content -Path $file.FullName
+    
+    # 遍历文件内容的每一行
+    foreach ($line in $content) {
+        # 检查每一行是否匹配工作时长的格式
+        if ($line -match "工作时长: (\d+)小时(\d+)分钟(\d+)秒") {
+            # 提取小时、分钟和秒
+            $hours = [int]$matches[1]
+            $minutes = [int]$matches[2]
+            $seconds = [int]$matches[3]
+            
+            # 创建时间间隔对象并累加到总时长中
+            $totalDuration += New-TimeSpan -Hours $hours -Minutes $minutes -Seconds $seconds
         }
     }
+}
+
     
     $totalOutput = "总工作时长: $($totalDuration.Days * 24 + $totalDuration.Hours)小时$($totalDuration.Minutes)分钟$($totalDuration.Seconds)秒"
     [System.Windows.Forms.MessageBox]::Show($totalOutput)
