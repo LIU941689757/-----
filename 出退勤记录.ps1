@@ -1,3 +1,13 @@
+#######################################################
+#
+#   VERSION：0.2
+#   作者：LIU YUXI
+#   更新日期：2024.06.27
+#   备考：
+#
+#######################################################
+
+
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -AssemblyName System.Drawing
 
