@@ -3,15 +3,18 @@ Add-Type -AssemblyName System.Drawing
 
 # 创建表单
 $form = New-Object System.Windows.Forms.Form
-$form.Text = "出勤腿勤记录"
+$form.Text = "出勤退勤记录"
 $form.Size = New-Object System.Drawing.Size(300,200)
 $form.StartPosition = "CenterScreen"
 
 # 实时日期和时间标签
 $datetimeLabel = New-Object System.Windows.Forms.Label
 $datetimeLabel.Location = New-Object System.Drawing.Point(10,10)
+#字号
+$datetimeLabel.Font = New-Object System.Drawing.Font("Arial", 15, [System.Drawing.FontStyle]::Regular)
 $datetimeLabel.Size = New-Object System.Drawing.Size(260,20)
 $form.Controls.Add($datetimeLabel)
+
 
 # 出勤按钮
 $checkInButton = New-Object System.Windows.Forms.Button
