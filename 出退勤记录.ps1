@@ -48,12 +48,17 @@ $totalDurationButton.Size = New-Object System.Drawing.Size(175,23)
 $form.Controls.Add($totalDurationButton)
 
 # 更新实时日期和时间
-$timer = New-Object System.Windows.Forms.Timer
+$timer = New-Object System.Windows.Forms.Timer  # 创建一个新的定时器对象
+# 设置定时器的间隔时间为 1000 毫秒（即 1 秒）
 $timer.Interval = 1000
+# 添加一个 Tick 事件处理程序，每当定时器间隔时间结束时，执行下面的代码块
 $timer.Add_Tick({
+    # 更新 $datetimeLabel 控件的文本属性，显示当前日期和时间
     $datetimeLabel.Text = (Get-Date).ToString("yyyy-MM-dd HH:mm:ss")
 })
+# 启动定时器
 $timer.Start()
+
 
 # 出勤按钮点击事件
 $checkInButton.Add_Click({
