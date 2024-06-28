@@ -2,7 +2,7 @@
 #
 #   VERSION：0.2
 #   作者：LIU YUXI
-#   更新日期：2024.06.27
+#   更新日期：2024.06.28
 #   备考：
 #
 #######################################################
@@ -16,6 +16,7 @@ $form = New-Object System.Windows.Forms.Form
 $form.Text = "出勤退勤记录"
 $form.Size = New-Object System.Drawing.Size(300,200)
 $form.StartPosition = "CenterScreen"
+
 
 # 实时日期和时间标签
 $datetimeLabel = New-Object System.Windows.Forms.Label
