@@ -19,7 +19,7 @@ $form.StartPosition = "CenterScreen"
 
 # 实时日期和时间标签
 $datetimeLabel = New-Object System.Windows.Forms.Label
-$datetimeLabel.Location = New-Object System.Drawing.Point(10,10)
+$datetimeLabel.Location = New-Object System.Drawing.Point(40,10)
 #字号
 $datetimeLabel.Font = New-Object System.Drawing.Font("Arial", 15, [System.Drawing.FontStyle]::Regular)
 $datetimeLabel.Size = New-Object System.Drawing.Size(260,20)
