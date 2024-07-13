@@ -82,7 +82,8 @@ $checkOutButton.Add_Click({
         $checkInTime = Get-Content -Path $filePathIn | Out-String | Get-Date
         $checkOutTime = Get-Date
         $workDuration = $checkOutTime - $checkInTime
-        $output = "出勤时间: $checkInTime`n退勤时间: $checkOutTime`n工作时长: $($workDuration.Hours)小时$($workDuration.Minutes)分钟$($workDuration.Seconds)秒"
+        #工作时间减去午休一小时
+        $output = "出勤时间: $checkInTime`n退勤时间: $checkOutTime`n工作时长: $($workDuration.Hours-1)小时$($workDuration.Minutes)分钟$($workDuration.Seconds)秒"
         $output | Out-File -FilePath $filePathOut
         [System.Windows.Forms.MessageBox]::Show("退勤时间记录成功！`n$($output)")
     } else {
